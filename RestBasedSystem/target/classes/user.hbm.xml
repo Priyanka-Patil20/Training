@@ -1,0 +1,81 @@
+<?xml version='1.0' encoding='UTF-8'?>  
+<!DOCTYPE hibernate-mapping PUBLIC  
+ "-//Hibernate/Hibernate Mapping DTD 5.3//EN"  
+ "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+ 
+
+<hibernate-mapping>
+
+ 
+<class name="com.vwits.model.User" table="SysUser">
+        <id name="userid" column="userid" type="string">
+            <generator class="assigned"></generator>
+        </id>
+
+ 
+
+        <property name="name" column="name" type="string"></property>
+        <property name="password" column="password" type="string"></property>
+        <property name="email" column="email" type="string"></property>
+        <property name="contact" column="contact" type="int"></property>
+        <property name="profile" column="profile" type="string"></property>
+        <property name="status" column="status" type="string"></property>
+    </class>
+    
+    <class name="com.vwits.model.Admin" table="admin">
+        <id name="adminid" column="adminid" type="string">
+            <generator class="assigned"></generator>
+        </id>
+
+ 
+
+        <property name="name" column="name" type="string"></property>
+        <property name="password" column="password" type="string"></property>
+        <property name="email" column="email" type="string"></property>
+        <property name="contact" column="contact" type="int"></property>
+        
+    </class>
+    <class name="com.vwits.model.Result" table="SysResult">
+        <id name="userid" column="userid" type="string">
+            <generator class="assigned"></generator>
+        </id>
+
+ 
+
+        <property name="name" column="name" type="string"></property>
+        <property name="examname" column="exam_name" type="string"></property>
+        
+        <property name="marks" column="obtained_marks" type="int"></property>
+        <property name="total" column="total" type="int"></property>
+        
+    </class>
+    
+    <class name="com.vwits.model.Exam" table="Exam">
+        <id name="examcode" column="examcode" type="string">
+            <generator class="assigned"></generator>
+        </id>
+		<property name="examname" column="examname" type="string"></property>
+        <property name="time" column="time" type="int"></property>
+        <list name="testlist" cascade="all" lazy="false">
+        <key column="examcode"></key>
+        <list-index column="series"></list-index>
+        <one-to-many class="com.vwits.model.TestPaper"/>
+        </list>
+    </class>
+    <class name="com.vwits.model.TestPaper" table="TestPaper">
+        <id name="srno" column="srno" type="int">
+            <generator class="assigned"></generator>
+        </id>
+
+ 
+
+        <property name="que" column="que" type="string"></property>
+        <property name="opt1" column="opt1" type="string"></property>
+        <property name="opt2" column="opt2" type="string"></property>
+        <property name="opt3" column="opt3" type="string"></property>
+        <property name="opt4" column="opt4" type="string"></property>
+        <property name="ans" column="ans" type="string"></property>
+        <property name="marks" column="marks" type="int"></property>
+    </class>
+    </hibernate-mapping>
